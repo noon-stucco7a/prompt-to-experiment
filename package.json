@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "@flagsmith/flagsmith": "12.4.0"
+  },
+  "description": "Prompt-to-Experiment: one natural-language prompt -> a Flagsmith experiment draft -> human approval -> CLI/API apply -> simulated traffic -> a report with a real conclusion. Flagsmith Toggle Wars (Track 01: Test Something Real).",
+  "devDependencies": {
+    "@types/node": "^26.6.11",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "name": "prompt-to-experiment",
+  "private": true,
+  "scripts": {
+    "apply": "tsx agent/cli.ts apply",
+    "approve": "tsx agent/cli.ts approve",
+    "build": "tsc",
+    "demo:config": "node scripts/generate-demo-config.mjs",
+    "plan": "tsx agent/cli.ts plan",
+    "typecheck": "tsc --noEmit",
+    "simulate": "tsx sim/simulate.ts",
+    "report": "tsx agent/report.ts",
+    "inspect": "tsx agent/inspect.ts"
+  },
+  "type": "module",
+  "version": "0.1.0"
+}
