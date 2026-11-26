@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FlowBoard — Organize your team's work in one place</title>
+  <style>
+    :root { --ink:#1a1a2e; --muted:#5b5b6b; --accent:#2563eb; --accent-dark:#1d4ed8; --bg:#f8f9fc; --card:#fff; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--ink); background:var(--bg); }
+    .banner { display:none; padding:8px 16px; font-size:13px; text-align:center; background:#fef3c7; color:#92400e; }
+    .banner.show { display:block; }
+    header { display:flex; justify-content:space-between; align-items:center; max-width:960px; margin:0 auto; padding:20px 24px; }
+    .logo { font-weight:800; font-size:20px; letter-spacing:-.02em; }
+    .logo span { color:var(--accent); }
+    nav a { margin-left:20px; color:var(--muted); text-decoration:none; font-size:14px; }
+    main { max-width:960px; margin:0 auto; padding:56px 24px 80px; text-align:center; }
+    h1 { font-size:44px; line-height:1.15; letter-spacing:-.03em; margin:0 0 16px; }
+    p.sub { font-size:18px; color:var(--muted); margin:0 0 32px; }
+    .cta-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    button.cta { font-size:17px; font-weight:600; padding:14px 28px; border:0; border-radius:10px; background:var(--accent); color:#fff; cursor:pointer; }
+    button.cta:hover { background:var(--accent-dark); }
+    form.signup { display:none; max-width:420px; margin:32px auto 0; background:var(--card); border:1px solid #e5e7eb; border-radius:12px; padding:24px; text-align:left; }
+    form.signup.show { display:block; }
+    form.signup label { display:block; font-size:13px; color:var(--muted); margin:12px 0 4px; }
+    form.signup input { width:100%; padding:10px 12px; border:1px solid #d1d5db; border-radius:8px; font-size:15px; }
+    form.signup button { width:100%; margin-top:18px; }
+    .success { display:none; max-width:420px; margin:32px auto 0; background:#ecfdf5; border:1px solid #a7f3d0; border-radius:12px; padding:24px; }
+    .success.show { display:block; }
+    .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:72px; text-align:left; }
+    .features div { background:var(--card); border:1px solid #e5e7eb; border-radius:12px; padding:20px; }
+    .features h3 { margin:0 0 8px; font-size:16px; }
+    .features p { margin:0; font-size:14px; color:var(--muted); }
+    footer { max-width:960px; margin:0 auto; padding:24px; font-size:12px; color:var(--muted); text-align:center; }
+    code { background:#eef2ff; padding:1px 6px; border-radius:4px; font-size:12px; }
+    #variant-tag { font-size:12px; color:var(--muted); margin-top:16px; }
+  </style>
+</head>
+<body>
+  <div id="banner" class="banner"></div>
+  <header>
+    <div class="logo">Flow<span>Board</span></div>
+    <nav><a href="#">Product</a><a href="#">Pricing</a><a href="#">Docs</a></nav>
+  </header>
+  <main>
+    <!-- Copy below is the CONTROL variant (hard-coded fallback). app.js
+         replaces it with the variant the Flagsmith flag resolves to. -->
+    <h1 id="headline">Organize your team's work in one place</h1>
+    <p class="sub" id="subheadline">One board for every task, deadline, and teammate — no setup, no credit card.</p>
+    <div class="cta-row">
+      <button class="cta" id="cta">Start free trial</button>
+    </div>
+    <p id="variant-tag"></p>
+
+    <form class="signup" id="signup-form">
+      <h2 style="margin:0 0 4px;">Create your workspace</h2>
+      <p style="margin:0; font-size:14px; color:var(--muted);">Demo form — nothing is stored.</p>
+      <label for="work-email">Work email</label>
+      <input id="work-email" type="email" placeholder="you@team.com" required>
+      <label for="team-name">Team name</label>
+      <input id="team-name" type="text" placeholder="Acme" required>
+      <button class="cta" type="submit">Create workspace</button>
+    </form>
+
+    <div class="success" id="success">
+      <h2 style="margin:0 0 8px;">You're in 🎉</h2>
+      <p style="margin:0; font-size:14px; color:var(--muted);">Your FlowBoard workspace is ready. (Demo — no account was created.)</p>
+    </div>
+
+    <section class="features">
+      <div><h3>Boards that stay in sync</h3><p>Every change lands everywhere, instantly — no refresh, no merge conflicts.</p></div>
+      <div><h3>Deadlines without nagging</h3><p>Smart reminders nudge the right person at the right time, once.</p></div>
+      <div><h3>Starts in 30 seconds</h3><p>Pick a template, invite your team, done. No onboarding call required.</p></div>
+    </section>
+  </main>
+  <footer>
+    FlowBoard is a fictional demo product for the Prompt-to-Experiment hackathon entry.
+    Variants are served by the Flagsmith flag <code>landing_cta</code>;
+    signups are reported as the event <code>signup_completed</code>.
+  </footer>
+
+  <!-- Flagsmith JS SDK 12.4.0 (UMD). demo/config.js is generated from .env
+       by `npm run demo:config` and is git-ignored; without it the page
+       renders the control copy in local-preview mode. -->
+  <script src="https://cdn.jsdelivr.net/npm/@flagsmith/flagsmith@12.4.0/index.min.js"></script>
+  <script src="config.js" onerror="window.FLOWBOARD_CONFIG=null"></script>
+  <script src="app.js"></script>
+</body>
+</html>
