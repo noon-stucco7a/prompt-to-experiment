@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "generatedAt": "2026-11-26T02:35:04.384Z",
+  "prompt": "测一下收益型标题对注册转化率的影响",
+  "flag": {
+    "name": "landing_cta",
+    "defaultValue": "control",
+    "variants": [
+      {
+        "key": "treatment",
+        "value": "treatment"
+      }
+    ]
+  },
+  "metric": {
+    "name": "signup_rate",
+    "aggregation": "occurrence",
+    "direction": "up",
+    "event": "signup_completed"
+  },
+  "secondaryMetric": {
+    "name": "cta_click_rate",
+    "aggregation": "occurrence",
+    "direction": "up",
+    "event": "cta_clicked"
+  },
+  "experiment": {
+    "name": "landing-cta-headline-v1",
+    "hypothesis": "把落地页主标题+CTA 从功能描述型改为收益承诺型，将使注册转化率从约 10% 提升到至少 13%",
+    "rolloutPercentage": 100,
+    "allocation": {
+      "control": 50,
+      "treatment": 50
+    }
+  },
+  "copy": {
+    "control": {
+      "key": "control",
+      "headline": "Organize your team's work in one place",
+      "cta": "Start free trial"
+    },
+    "treatment": {
+      "key": "treatment",
+      "headline": "Ship projects twice as fast — start today",
+      "cta": "Get started free"
+    }
+  },
+  "simulation": {
+    "identitiesPerVariant": 1000,
+    "totalIdentities": 2000,
+    "seed": 20261126,
+    "trueRates": {
+      "control": 0.1,
+      "treatment": 0.15
+    }
+  },
+  "defaultsUsed": [
+    {
+      "field": "copy.headline / copy.cta",
+      "defaultValue": "control: “Organize your team's work in one place” / “Start free trial”; treatment: “Ship projects twice as fast — start today” / “Get started free”",
+      "note": "Prompt states no explicit copy; using the documented default copy from design.md §2.5. Quote copy in the prompt to override, e.g. control「…」treatment「…」."
+    },
+    {
+      "field": "experiment.allocation",
+      "defaultValue": "control 50 / treatment 50",
+      "note": "Prompt states no split; defaulting to an even 50/50 split."
+    },
+    {
+      "field": "simulation.identitiesPerVariant",
+      "defaultValue": "1000 per variant (2000 total)",
+      "note": "Prompt states no sample size; 1000/group leaves margin over the ≈686/group required for α=0.05, power=0.8, p1=0.10, p2=0.15 (design.md §3)."
+    }
+  ]
+}
